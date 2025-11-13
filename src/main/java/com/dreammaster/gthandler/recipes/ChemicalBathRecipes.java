@@ -10,7 +10,6 @@ import static gregtech.api.enums.Mods.LogisticsPipes;
 import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.OpenModularTurrets;
 import static gregtech.api.enums.Mods.PamsHarvestCraft;
-import static gregtech.api.enums.Mods.ProjectRedTransmission;
 import static gregtech.api.enums.Mods.StevesCarts2;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.recipe.RecipeMaps.chemicalBathRecipes;
@@ -71,25 +70,25 @@ public class ChemicalBathRecipes implements Runnable {
         GTValues.RA.stdBuilder().itemInputs(GTOreDictUnificator.get(OrePrefixes.ingotHot, Materials.Kanthal, 1L))
                 .itemOutputs(GTOreDictUnificator.get(OrePrefixes.ingot, Materials.Kanthal, 1L))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("ic2coolant"), 250))
-                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(1 * MINUTES)
+                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(40 * SECONDS)
                 .eut(TierEU.RECIPE_MV).addTo(chemicalBathRecipes);
         // Cooling Hot Tantalum MV
         GTValues.RA.stdBuilder().itemInputs(GTOreDictUnificator.get(OrePrefixes.ingotHot, Materials.Tantalum, 1L))
                 .itemOutputs(GTOreDictUnificator.get(OrePrefixes.ingot, Materials.Tantalum, 1L))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("ic2coolant"), 250))
-                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250))
-                .duration(1 * MINUTES + 30 * SECONDS).eut(TierEU.RECIPE_MV).addTo(chemicalBathRecipes);
+                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(1 * MINUTES)
+                .eut(TierEU.RECIPE_MV).addTo(chemicalBathRecipes);
         // Cooling Hot Silicon MV
         GTValues.RA.stdBuilder().itemInputs(GTOreDictUnificator.get(OrePrefixes.ingotHot, Materials.Silicon, 1L))
                 .itemOutputs(GTOreDictUnificator.get(OrePrefixes.ingot, Materials.Silicon, 1L))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("ic2coolant"), 250))
-                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(30 * SECONDS)
+                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(20 * SECONDS)
                 .eut(TierEU.RECIPE_MV).addTo(chemicalBathRecipes);
         // Cooling Hot SiliconSG MV
         GTValues.RA.stdBuilder().itemInputs(GTOreDictUnificator.get(OrePrefixes.ingotHot, Materials.SiliconSG, 1L))
                 .itemOutputs(GTOreDictUnificator.get(OrePrefixes.ingot, Materials.SiliconSG, 1L))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("ic2coolant"), 250))
-                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(40 * SECONDS)
+                .fluidOutputs(new FluidStack(FluidRegistry.getFluid("ic2hotcoolant"), 250)).duration(30 * SECONDS)
                 .eut(TierEU.RECIPE_MV).addTo(chemicalBathRecipes);
 
         GTValues.RA.stdBuilder().itemInputs(CustomItemList.MysteriousCrystalGemExquisite.get(1L))
@@ -258,6 +257,20 @@ public class ChemicalBathRecipes implements Runnable {
                             getModItem(EnderIO.ID, "itemMaterial", 1, 1, missing))
                     .outputChances(10000, 9000, 5000).fluidInputs(Materials.Rubber.getMolten(144L))
                     .duration(10 * SECONDS).eut(2).addTo(chemicalBathRecipes);
+            GTValues.RA.stdBuilder().itemInputs(getModItem(EnderIO.ID, "itemMaterial", 1, 2, missing))
+                    .itemOutputs(
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing),
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing),
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing))
+                    .outputChances(10000, 10000, 10000).fluidInputs(Materials.RubberSilicone.getMolten(144L))
+                    .duration(10 * SECONDS).eut(2).addTo(chemicalBathRecipes);
+            GTValues.RA.stdBuilder().itemInputs(getModItem(EnderIO.ID, "itemMaterial", 1, 2, missing))
+                    .itemOutputs(
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing),
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing),
+                            getModItem(EnderIO.ID, "itemMaterial", 2, 1, missing))
+                    .outputChances(10000, 10000, 10000).fluidInputs(Materials.StyreneButadieneRubber.getMolten(144L))
+                    .duration(10 * SECONDS).eut(2).addTo(chemicalBathRecipes);
         }
 
         if (PamsHarvestCraft.isModLoaded()) {
@@ -379,163 +392,6 @@ public class ChemicalBathRecipes implements Runnable {
                     .itemOutputs(getModItem(StevesCarts2.ID, "ModuleComponents", 1, 65, missing))
                     .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyegreen", 864)).duration(10 * SECONDS)
                     .eut(2).addTo(chemicalBathRecipes);
-        }
-        if (ProjectRedTransmission.isModLoaded()) {
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 15, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyered", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 14, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyegreen", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 13, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyebrown", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 12, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeblue", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 11, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyepurple", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 10, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyecyan", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 9, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelightgray", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 8, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyegray", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 7, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyepink", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 6, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelime", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 5, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeyellow", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 4, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelightblue", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 3, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyemagenta", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 2, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeorange", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 16, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 2, 1, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyewhite", 18))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 33, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeblack", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 32, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyered", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 31, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyegreen", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 30, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyebrown", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 29, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeblue", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 28, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyepurple", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 27, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyecyan", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 26, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelightgray", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 25, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyegray", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 24, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyepink", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 23, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelime", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 22, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeyellow", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 21, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyelightblue", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 20, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyemagenta", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 19, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyeorange", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
-            GTValues.RA.stdBuilder()
-                    .itemInputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 17, missing))
-                    .itemOutputs(getModItem(ProjectRedTransmission.ID, "projectred.transmission.wire", 1, 18, missing))
-                    .fluidInputs(FluidRegistry.getFluidStack("dye.watermixed.dyewhite", 36))
-                    .duration(1 * SECONDS + 5 * TICKS).eut(2).addTo(chemicalBathRecipes);
         }
     }
 }

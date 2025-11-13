@@ -1,5 +1,6 @@
 package com.dreammaster.gthandler.recipes;
 
+import static gregtech.api.enums.Mods.GalacticraftAmunRa;
 import static gregtech.api.enums.Mods.OpenBlocks;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.enums.Mods.TinkerConstruct;
@@ -82,6 +83,13 @@ public class FluidExtractorRecipes implements Runnable {
                     .fluidOutputs(Materials.Glass.getMolten(54L)).duration(9 * TICKS).eut(54)
                     .recipeCategory(RecipeCategories.fluidExtractorRecycling).addTo(fluidExtractionRecipes);
 
+        }
+
+        if (GalacticraftAmunRa.isModLoaded()) {
+            GTValues.RA.stdBuilder().itemInputs(GTModHandler.getModItem(GalacticraftAmunRa.ID, "tile.wood1", 8, 1))
+                    .fluidOutputs(Materials.LumipodExtract.getFluid(250))
+
+                    .duration(15 * SECONDS).eut(TierEU.RECIPE_UHV).addTo(fluidExtractionRecipes);
         }
     }
 }

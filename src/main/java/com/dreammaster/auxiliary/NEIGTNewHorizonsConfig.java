@@ -17,6 +17,7 @@ import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import goodgenerator.loader.Loaders;
 import gregtech.api.GregTechAPI;
+import gregtech.api.enums.ItemList;
 import gregtech.api.util.GTModHandler;
 import tectech.thing.casing.TTCasingsContainer;
 
@@ -34,8 +35,16 @@ public class NEIGTNewHorizonsConfig implements IConfigureNEI {
         API.hideItem(new ItemStack(TTCasingsContainer.eyeOfHarmonyRenderBlock));
         API.hideItem(new ItemStack(TTCasingsContainer.forgeOfGodsRenderBlock));
 
+        // Hidden Space Project Manager & Space Research Until Fully Developed
+        API.hideItem(ItemList.SpaceElevatorModuleResearch.get(1));
+        API.hideItem(ItemList.SpaceElevatorModuleManager.get(1));
+
         if (Aroma1997Core.isModLoaded()) {
             API.hideItem(GTModHandler.getModItem(Aroma1997Core.ID, "wrenched", 1));
+        }
+
+        if (Avaritia.isModLoaded()) {
+            API.hideItem(GTModHandler.getModItem(Avaritia.ID, "Neutronium_Compressor", 1));
         }
 
         if (BiblioCraft.isModLoaded()) {
@@ -77,6 +86,10 @@ public class NEIGTNewHorizonsConfig implements IConfigureNEI {
             API.hideItem(GTModHandler.getModItem(HardcoreEnderExpansion.ID, "temple_end_portal", 1));
             API.hideItem(GTModHandler.getModItem(HardcoreEnderExpansion.ID, "laser_beam", 1));
             API.hideItem(GTModHandler.getModItem(HardcoreEnderExpansion.ID, "item_special_effects", 1));
+        }
+
+        if (IndustrialCraft2.isModLoaded()) {
+            API.hideItem(GTModHandler.getIC2Item("electrolyzedWaterCell", 1L));
         }
 
         if (Mantle.isModLoaded()) {

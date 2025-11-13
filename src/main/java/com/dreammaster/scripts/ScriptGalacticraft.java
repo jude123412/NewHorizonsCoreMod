@@ -1288,6 +1288,17 @@ public class ScriptGalacticraft implements IScriptLoader {
                 getModItem(GalacticraftMars.ID, "item.spaceshipTier2", 1, 11, missing),
                 getModItem(GalacticraftMars.ID, "item.spaceshipTier2", 1, 13, missing));
 
+        final String[] dyeInputs = { "dyeWhite", "dyeBlack", "dyeLightBlue", "dyeLime", "dyeBrown", "dyeBlue",
+                "dyeGray", "dyeGreen", "dyeLightGray", "dyeMagenta", "dyeOrange", "dyePink", "dyePurple", "dyeRed",
+                "dyeCyan", "dyeYellow" };
+
+        for (int i = 0; i < dyeInputs.length; i++) {
+            addShapelessRecipe(
+                    getModItem(GalacticraftCore.ID, "item.parachute", 1, i, missing),
+                    getModItem(GalacticraftCore.ID, "item.parachute", 1, WILDCARD, missing),
+                    dyeInputs[i]);
+        }
+
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(GalacticraftCore.ID, "item.infiniteOxygen", 1, 0, missing),
                 "--abbba--",
@@ -1809,7 +1820,7 @@ public class ScriptGalacticraft implements IScriptLoader {
         GTValues.RA.stdBuilder()
                 .itemInputs(
                         getModItem(PamsHarvestCraft.ID, "wovencottonItem", 2, 0, missing),
-                        GTOreDictUnificator.get(OrePrefixes.stick, Materials.Plastic, 2L))
+                        GTOreDictUnificator.get(OrePrefixes.stick, Materials.Polyethylene, 2L))
                 .itemOutputs(getModItem(GalacticraftCore.ID, "item.canvas", 1, 0, missing)).duration(15 * SECONDS)
                 .eut(480).addTo(assemblerRecipes);
         GTValues.RA.stdBuilder()
@@ -1909,9 +1920,6 @@ public class ScriptGalacticraft implements IScriptLoader {
     }
 
     private void maceratorRecipes() {
-        GTValues.RA.stdBuilder().itemInputs(getModItem(GalacticraftMars.ID, "item.null", 1, 0, missing))
-                .itemOutputs(GTOreDictUnificator.get(OrePrefixes.dust, Materials.Desh, 1L)).outputChances(10000)
-                .duration(15 * SECONDS).eut(2).addTo(maceratorRecipes);
         GTValues.RA.stdBuilder().itemInputs(getModItem(GalacticraftCore.ID, "tile.fallenMeteor", 1, 0, missing))
                 .itemOutputs(getModItem(GalacticraftCore.ID, "item.meteoricIronRaw", 2, 0, missing))
                 .outputChances(10000).duration(15 * SECONDS).eut(2).addTo(maceratorRecipes);

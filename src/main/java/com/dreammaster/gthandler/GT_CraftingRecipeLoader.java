@@ -1,11 +1,13 @@
 package com.dreammaster.gthandler;
 
+import static com.dreammaster.scripts.IScriptLoader.missing;
 import static gregtech.api.enums.Mods.AE2FluidCraft;
 import static gregtech.api.enums.Mods.AdventureBackpack;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.BuildCraftFactory;
 import static gregtech.api.enums.Mods.Chisel;
 import static gregtech.api.enums.Mods.Computronics;
+import static gregtech.api.enums.Mods.EtFuturumRequiem;
 import static gregtech.api.enums.Mods.ExtraUtilities;
 import static gregtech.api.enums.Mods.Forestry;
 import static gregtech.api.enums.Mods.GalacticraftCore;
@@ -13,6 +15,7 @@ import static gregtech.api.enums.Mods.GalacticraftMars;
 import static gregtech.api.enums.Mods.GalaxySpace;
 import static gregtech.api.enums.Mods.IguanaTweaksTinkerConstruct;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
+import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.OpenComputers;
 import static gregtech.api.enums.Mods.OpenPrinters;
 import static gregtech.api.enums.Mods.ProjectRedIllumination;
@@ -21,6 +24,7 @@ import static gregtech.api.enums.Mods.TinkerConstruct;
 import static gregtech.api.enums.Mods.ZTones;
 import static gregtech.api.enums.OrePrefixes.screw;
 import static gregtech.api.util.GTModHandler.RecipeBits.DELETE_ALL_OTHER_RECIPES;
+import static gregtech.api.util.GTModHandler.getModItem;
 import static gtPlusPlus.core.material.MaterialsAlloy.AQUATIC_STEEL;
 import static gtPlusPlus.core.material.MaterialsAlloy.INCONEL_792;
 import static gtPlusPlus.core.material.MaterialsAlloy.LEAGRISIUM;
@@ -47,12 +51,12 @@ import com.dreammaster.recipes.Recipe;
 
 import bartworks.common.loaders.ItemRegistry;
 import bartworks.system.material.WerkstoffLoader;
+import cpw.mods.fml.common.registry.GameRegistry;
 import goodgenerator.items.GGMaterial;
 import gregtech.api.enums.Dyes;
 import gregtech.api.enums.GTValues;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.Mods;
 import gregtech.api.enums.OreDictNames;
 import gregtech.api.enums.OrePrefixes;
@@ -118,14 +122,13 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_UMV.get(1L),
                 bits,
-                new Object[] { "PPP", "PwP", "PPP", 'P', OrePrefixes.plate.get(MaterialsUEVplus.SpaceTime) });
+                new Object[] { "PPP", "PwP", "PPP", 'P', OrePrefixes.plate.get(Materials.SpaceTime) });
 
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_UXV.get(1L),
                 bits,
-                new Object[] { "PSP", "SwS", "PSP", 'P',
-                        OrePrefixes.plate.get(MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter), 'S',
-                        OrePrefixes.plate.get(MaterialsUEVplus.MagMatter) });
+                new Object[] { "PSP", "SwS", "PSP", 'P', OrePrefixes.plate.get(Materials.MHDCSM), 'S',
+                        OrePrefixes.plate.get(Materials.MagMatter) });
 
         // Hull recycling placed here after the casing recipes for proper item data
         GTOreDictUnificator.addItemDataFromInputs(
@@ -328,7 +331,7 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                 ItemList.Casing_Tank_1.get(1L),
                 bits,
                 new Object[] { "PPP", "PIP", "PPP", 'P', OrePrefixes.plate.get(Materials.Steel), 'I',
-                        OrePrefixes.pipeLarge.get(Materials.Plastic) });
+                        OrePrefixes.pipeLarge.get(Materials.Polyethylene) });
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_Tank_2.get(1L),
                 bits,
@@ -615,7 +618,7 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                 bits,
                 new Object[] { "RPR", "MBM", "CGC", 'B', ItemList.Hull_LV, 'R', OrePrefixes.rotor.get(Materials.Steel),
                         'P', ItemList.Electric_Pump_LV, 'M', ItemList.Electric_Motor_LV, 'C',
-                        OrePrefixes.cableGt01.get(Materials.Copper), 'G', ItemList.Casing_Turbine });
+                        OrePrefixes.cableGt01.get(Materials.Copper), 'G', ItemList.Casing_AirFilter_Turbine_T1 });
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_AirFilter_Vent_T2.get(1L),
                 bits,
@@ -633,7 +636,7 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                 new Object[] { "RPR", "MBM", "CGC", 'B', ItemList.Hull_HV, 'R',
                         OrePrefixes.rotor.get(Materials.Titanium), 'P', ItemList.Electric_Pump_HV, 'M',
                         ItemList.Electric_Motor_HV, 'C', OrePrefixes.cableGt01.get(Materials.Gold), 'G',
-                        ItemList.Casing_Turbine2 });
+                        ItemList.Casing_AirFilter_Turbine_T2 });
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_AirFilter_Vent_T3.get(1L),
                 bits,
@@ -652,7 +655,7 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                 new Object[] { "RPR", "MBM", "CGC", 'B', ItemList.Hull_IV, 'R',
                         OrePrefixes.rotor.get(Materials.TungstenSteel), 'P', ItemList.Electric_Pump_IV, 'M',
                         ItemList.Electric_Motor_IV, 'C', OrePrefixes.cableGt01.get(Materials.Tungsten), 'G',
-                        ItemList.Casing_Turbine3 });
+                        ItemList.Casing_AirFilter_Turbine_T3 });
 
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_Pyrolyse.get(1L),
@@ -801,6 +804,22 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                         ItemList.Cover_SolarPanel_8V, 'T', OrePrefixes.plate.get(Materials.StainlessSteel), 'C',
                         OrePrefixes.circuit.get(Materials.EV) });
 
+        GTModHandler.addCraftingRecipe(
+                ItemList.LATEX.get(1),
+                bits,
+                new Object[] { "SPS", "CMC", "SPS", 'S',
+                        GTOreDictUnificator.get(OrePrefixes.plateDense, Materials.StyreneButadieneRubber, 1L), 'P',
+                        ItemList.Electric_Pump_HV.get(1L), 'C', OrePrefixes.circuit.get(Materials.EV), 'M',
+                        ItemList.Machine_HV_Assembler.get(1) });
+
+        GTModHandler.addCraftingRecipe(
+                ItemList.LATEX.get(1),
+                bits,
+                new Object[] { "SPS", "CMC", "SPS", 'S',
+                        GTOreDictUnificator.get(OrePrefixes.plateDense, Materials.RubberSilicone, 1L), 'P',
+                        ItemList.Electric_Pump_HV.get(1L), 'C', OrePrefixes.circuit.get(Materials.EV), 'M',
+                        ItemList.Machine_HV_Assembler.get(1) });
+
         // Reinforced Wooden Casing
         GTModHandler.addCraftingRecipe(
                 ItemList.Casing_Reinforced_Wood.get(1),
@@ -908,6 +927,50 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                         CustomItemList.ReinforcedGlassLense.get(1L) });
 
         // ===================================================================================================
+        // Coke Oven
+        // ===================================================================================================
+
+        GTModHandler.addCraftingRecipe(
+                ItemList.CokeOvenCasing.get(1),
+                bits,
+                new Object[] {
+                        // spotless:off
+                        "BB ",
+                        "BB ",
+                        "   ",
+                        'B', NHItemList.CokeOvenBrick.getIS().splitStack(1)
+                        // spotless:on
+                });
+
+        GTModHandler.addCraftingRecipe(
+                ItemList.CokeOvenController.get(1),
+                bits,
+                new Object[] {
+                        // spotless:off
+                        "BBB",
+                        "BFB",
+                        "BBB",
+                        'B', NHItemList.CokeOvenBrick.getIS().splitStack(1),
+                        'F', getModItem(Minecraft.ID, "furnace", 1, 0, missing)
+                        // spotless:on
+                });
+
+        GTModHandler.addCraftingRecipe(
+                ItemList.CokeOvenHatch.get(1),
+                bits,
+                new Object[] {
+                        // spotless:off
+                        "BHB",
+                        "BCB",
+                        "BPB",
+                        'B', NHItemList.CokeOvenBrick.getIS().splitStack(1),
+                        'H', getModItem(Minecraft.ID, "hopper", 1, 0, missing),
+                        'C', getModItem(Minecraft.ID, "chest", 1, 0, missing),
+                        'P', OrePrefixes.pipeMedium.get(Materials.Bronze)
+                        // spotless:on
+                });
+
+        // ===================================================================================================
         // Diodes
         // ===================================================================================================
 
@@ -947,11 +1010,11 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                         machinehull = ItemList.Hull_UMV.get(1L);
                         break;
                     case 13: // UXV
-                        hull = GTOreDictUnificator.get(OrePrefixes.plate, MaterialsUEVplus.TranscendentMetal, 1L);
+                        hull = GTOreDictUnificator.get(OrePrefixes.plate, Materials.TranscendentMetal, 1L);
                         machinehull = ItemList.Hull_UXV.get(1L);
                         break;
                     default: // MAX
-                        hull = GTOreDictUnificator.get(OrePrefixes.plate, MaterialsUEVplus.SpaceTime, 1L);
+                        hull = GTOreDictUnificator.get(OrePrefixes.plate, Materials.SpaceTime, 1L);
                         machinehull = ItemList.Hull_MAXV.get(1L);
                         break;
                 }
@@ -1034,13 +1097,13 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                     .provideTo(shapelessUnremovableGtRecipes())
                     .provideTo(MANTLE.manualShapedCraftingRecipeNamed("unfiredsearedbrick"));
             GTModHandler.addCraftingRecipe(
-                    CustomItemList.UnfiredSlimeSoulBrick.get(8L),
+                    CustomItemList.UnfiredSlimeSoilBrick.get(8L),
                     GTModHandler.RecipeBits.NOT_REMOVABLE,
                     new Object[] { "SSS", "SFS", "SSS", 'S',
                             GTModHandler.getModItem(aTextTConstruct, "CraftedSoil", 1L, 6), 'F',
                             new ItemStack(NHItems.WOODEN_BRICK_FORM.get(), 1, GTValues.W) });
             GTModHandler.addShapelessCraftingRecipe(
-                    CustomItemList.UnfiredSlimeSoulBrick.get(1L),
+                    CustomItemList.UnfiredSlimeSoilBrick.get(1L),
                     GTModHandler.RecipeBits.NOT_REMOVABLE,
                     new Object[] { GTModHandler.getModItem(aTextTConstruct, "CraftedSoil", 1L, 6),
                             new ItemStack(NHItems.WOODEN_BRICK_FORM.get(), 1, GTValues.W) });
@@ -1134,22 +1197,6 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                         OrePrefixes.bolt.get(Materials.StainlessSteel), 'R',
                         OrePrefixes.ring.get(Materials.StainlessSteel), 'S',
                         GTModHandler.getModItem(GalacticraftCore.ID, "item.sensorLens", 1, 0) });
-        GTModHandler.addCraftingRecipe(
-                GTModHandler.getModItem(IndustrialCraft2.ID, "itemTreetapElectric", 1, GTValues.W),
-                bits,
-                new Object[] { "dRD", "RPB", "ECS", 'R', OrePrefixes.stickLong.get(Materials.Steel), 'D',
-                        OrePrefixes.toolHeadDrill.get(Materials.Steel), 'P', ItemList.Electric_Pump_LV, 'B',
-                        GTModHandler.getModItem(IndustrialCraft2.ID, "itemBatRE", 1, GTValues.W), 'E',
-                        GTModHandler.getModItem(IndustrialCraft2.ID, "itemRecipePart", 1, 3), 'C',
-                        OrePrefixes.cableGt01.get(Materials.Tin), 'S', screw.get(Materials.Steel) });
-        GTModHandler.addCraftingRecipe(
-                GTModHandler.getModItem(IndustrialCraft2.ID, "itemToolHoe", 1, GTValues.W),
-                bits,
-                new Object[] { "dPH", "PGB", "ECS", 'S', screw.get(Materials.Steel), 'H',
-                        OrePrefixes.stick.get(Materials.Steel), 'G', OrePrefixes.gearGtSmall.get(Materials.Steel), 'B',
-                        GTModHandler.getModItem(IndustrialCraft2.ID, "itemBatRE", 1, GTValues.W), 'E',
-                        GTModHandler.getModItem(IndustrialCraft2.ID, "itemRecipePart", 1, 3), 'P',
-                        OrePrefixes.plate.get(Materials.Steel) });
 
         if (OpenComputers.isModLoaded()) GTModHandler.addCraftingRecipe(
                 GTModHandler.getModItem(OpenComputers.ID, "wrench", 1, 0),
@@ -1390,7 +1437,6 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                     new Object[] { "LLL", "PBP", "PVP", 'L', CustomItemList.BlackPlutoniumCompressedPlate.get(1), 'P',
                             CustomItemList.HeavyDutyPlateTier7.get(1), 'B', CustomItemList.Tier3Booster.get(1), 'V',
                             GTModHandler.getModItem(GalaxySpace.ID, "item.CompressedSDHD120", 1L, 0) });
-
         }
 
         if (Mods.GraviSuite.isModLoaded()) {
@@ -2380,6 +2426,58 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
                 ItemList.Hatch_Input_MAX.get(1),
                 bits,
                 new Object[] { ItemList.Hatch_Output_MAX, ToolDictNames.craftingToolScrewdriver, });
+
+        // add various plank recipes
+        // GT replaces these recipes automatically
+
+        if (GalaxySpace.isModLoaded()) {
+            // Barnarda C Wood
+            GameRegistry.addShapelessRecipe(
+                    GTModHandler.getModItem(GalaxySpace.ID, "barnardaCplanks", 4, 0),
+                    GTModHandler.getModItem(GalaxySpace.ID, "barnardaClog", 1, 0));
+        }
+
+        if (EtFuturumRequiem.isModLoaded()) {
+            // Cherry
+            GameRegistry.addShapelessRecipe(
+                    getModItem(EtFuturumRequiem.ID, "wood_planks", 4L, 3),
+                    getModItem(EtFuturumRequiem.ID, "cherry_log", 1L, 0));
+
+            // Stripped Oak
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 0),
+                    getModItem(EtFuturumRequiem.ID, "log_stripped", 1, 0));
+
+            // Stripped Spruce
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 1),
+                    getModItem(EtFuturumRequiem.ID, "log_stripped", 1, 1));
+
+            // Stripped Birch
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 2),
+                    getModItem(EtFuturumRequiem.ID, "log_stripped", 1, 2));
+
+            // Stripped Jungle
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 3),
+                    getModItem(EtFuturumRequiem.ID, "log_stripped", 1, 3));
+
+            // Stripped Acacia
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 4),
+                    getModItem(EtFuturumRequiem.ID, "log2_stripped", 1, 0));
+
+            // Stripped Dark Oak
+            GameRegistry.addShapelessRecipe(
+                    new ItemStack(Blocks.planks, 4, 5),
+                    getModItem(EtFuturumRequiem.ID, "log2_stripped", 1, 1));
+
+            // Stripped Cherry
+            GameRegistry.addShapelessRecipe(
+                    getModItem(EtFuturumRequiem.ID, "wood_planks", 4L, 3),
+                    getModItem(EtFuturumRequiem.ID, "cherry_log", 1, 2));
+        }
     }
 
     private Consumer<Recipe> shapelessUnremovableGtRecipes() {
