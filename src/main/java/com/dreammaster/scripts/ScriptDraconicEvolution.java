@@ -11,6 +11,7 @@ import static gregtech.api.enums.Mods.EtFuturumRequiem;
 import static gregtech.api.enums.Mods.ExtraUtilities;
 import static gregtech.api.enums.Mods.Forestry;
 import static gregtech.api.enums.Mods.IndustrialCraft2;
+import static gregtech.api.enums.Mods.KekzTech;
 import static gregtech.api.enums.Mods.Minecraft;
 import static gregtech.api.enums.Mods.OpenBlocks;
 import static gregtech.api.enums.Mods.OpenComputers;
@@ -46,6 +47,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GTModHandler;
 import gregtech.api.util.GTOreDictUnificator;
+import kekztech.common.Blocks;
 import tconstruct.tools.TinkerTools;
 
 public class ScriptDraconicEvolution implements IScriptLoader {
@@ -75,7 +77,8 @@ public class ScriptDraconicEvolution implements IScriptLoader {
                 Railcraft.ID,
                 Thaumcraft.ID,
                 TinkerConstruct.ID,
-                TinkersGregworks.ID);
+                TinkersGregworks.ID,
+                KekzTech.ID);
     }
 
     @Override
@@ -908,7 +911,7 @@ public class ScriptDraconicEvolution implements IScriptLoader {
                 "---------",
                 "---------",
                 'a',
-                "plateDraconium",
+                new ItemStack(Blocks.lscLapotronicEnergyUnit, 1, 5),
                 'b',
                 getModItem(DraconicEvolution.ID, "draconiumFluxCapacitor", 1, 0, missing),
                 'c',
