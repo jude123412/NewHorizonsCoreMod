@@ -916,27 +916,6 @@ public class ScriptDraconicEvolution implements IScriptLoader {
                 'd',
                 getModItem(DraconicEvolution.ID, "draconium", 1, 2, missing));
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
-                getModItem(DraconicEvolution.ID, "energyPylon", 1, 0, missing),
-                "---------",
-                "---------",
-                "--abcba--",
-                "--bcdcb--",
-                "--cdedc--",
-                "--bcdcb--",
-                "--abcba--",
-                "---------",
-                "---------",
-                'a',
-                "gemEnderEye",
-                'b',
-                "plateEmerald",
-                'c',
-                "plateDiamond",
-                'd',
-                getModItem(DraconicEvolution.ID, "draconicCore", 1, 0, missing),
-                'e',
-                "blockDraconium");
-        ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 getModItem(DraconicEvolution.ID, "energyCrystal", 1, 0, missing),
                 "---------",
                 "----a----",
