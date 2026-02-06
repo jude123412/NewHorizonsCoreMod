@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.dreammaster.scripts.recycling.ScriptRecyclingThaumcraft;
 import net.minecraft.util.EnumChatFormatting;
 
 import com.dreammaster.main.MainRegistry;
@@ -125,6 +126,7 @@ public class ScriptLoader {
                         new ScriptWirelessRedstone(),
                         new ScriptWitchery(),
                         new ScriptTB(),
+                        new ScriptRecyclingThaumcraft(),
                         ScriptZZClientOnly.instance));
 
         // Java somehow tries to load XU / TiC class when instantiating this class
