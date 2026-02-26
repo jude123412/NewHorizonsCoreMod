@@ -1266,7 +1266,7 @@ public class ScriptLogisticPipes implements IScriptLoader {
                         ItemList.Hull_LV.get(1L),
                         CustomItemList.Display.get(1L),
                         ItemList.Cover_Crafting.get(1L),
-                        getModItem(OpenComputers.ID, "keyboard", 1, 0, missing),
+                        ItemList.Cover_Screen.get(1),
                         getModItem(LogisticsPipes.ID, "item.PipeItemsRequestLogistics", 1, 0, missing),
                         getModItem(IronChests.ID, "BlockIronChest", 1, 3, missing),
                         GTOreDictUnificator.get(OrePrefixes.circuit, Materials.LV, 2L),
