@@ -79,8 +79,8 @@ public class ScriptIndustrialCraft implements IScriptLoader {
     public void loadRecipes() {
         OreDictHelper.removeOreDict("plateSteel", getModItem(IndustrialCraft2.ID, "itemPlates", 1, 5));
 
-        OreDictHelper.removeOreDict("circuitBasic", getModItem(IndustrialCraft2.ID, "itemPartCircuit", 1, 5));
-        OreDictHelper.removeOreDict("circuitAdvanced", getModItem(IndustrialCraft2.ID, "itemPartCircuitAdv", 1, 5));
+        OreDictHelper.removeOreDict("circuitBasic", getModItem(IndustrialCraft2.ID, "itemPartCircuit", 1));
+        OreDictHelper.removeOreDict("circuitAdvanced", getModItem(IndustrialCraft2.ID, "itemPartCircuitAdv", 1));
 
         addShapelessRecipe(
                 getModItem(IndustrialCraft2.ID, "blockMiningPipe", 1, 0),

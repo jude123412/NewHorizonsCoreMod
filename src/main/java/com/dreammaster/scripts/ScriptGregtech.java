@@ -613,6 +613,12 @@ public class ScriptGregtech implements IScriptLoader {
                 "platePaper",
                 "dyeBlue",
                 "dyeWhite");
+        addShapelessRecipe(
+                ItemList.Circuit_BasicElectronic.get(1),
+                getModItem(IndustrialCraft2.ID, "itemPartCircuit", 1));
+        addShapelessRecipe(
+                ItemList.Circuit_Integrated_Advanced.get(1),
+                getModItem(IndustrialCraft2.ID, "itemPartCircuitAdv", 1));
 
         ExtremeCraftingManager.getInstance().addExtremeShapedOreRecipe(
                 ItemList.Spray_Color_Infinite.get(1L),
