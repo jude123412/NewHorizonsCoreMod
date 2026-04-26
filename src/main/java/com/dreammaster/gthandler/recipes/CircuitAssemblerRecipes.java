@@ -212,7 +212,7 @@ public class CircuitAssemblerRecipes implements Runnable {
                             ItemList.Circuit_Parts_Transistor.get(4L),
                             GTOreDictUnificator.get(OrePrefixes.wireFine, Materials.Electrum, 8),
                             GTOreDictUnificator.get(OrePrefixes.bolt, Materials.AnnealedCopper, 8))
-                    .itemOutputs(GTModHandler.getIC2Item("advancedCircuit", 1L))
+                    .itemOutputs(ItemList.Circuit_Integrated_Advanced.get(1L))
                     .fluidInputs(tMat.getMolten(144L * tMultiplier / 2L)).duration(40 * SECONDS).eut(TierEU.RECIPE_LV)
                     .addTo(circuitAssemblerRecipes);
 
@@ -224,7 +224,7 @@ public class CircuitAssemblerRecipes implements Runnable {
                             ItemList.Circuit_Parts_TransistorASMD.get(1L),
                             GTOreDictUnificator.get(OrePrefixes.wireFine, Materials.Electrum, 8),
                             GTOreDictUnificator.get(OrePrefixes.bolt, Materials.AnnealedCopper, 8))
-                    .itemOutputs(GTModHandler.getIC2Item("advancedCircuit", 1L))
+                    .itemOutputs(ItemList.Circuit_Integrated_Advanced.get(1L))
                     .fluidInputs(tMat.getMolten(144L * tMultiplier / 2L)).duration(20 * SECONDS).eut(TierEU.RECIPE_LV)
                     .addTo(circuitAssemblerRecipes);
 
