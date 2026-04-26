@@ -32,6 +32,7 @@ import static gregtech.api.enums.Mods.WitchingGadgets;
 import static gregtech.api.recipe.RecipeMaps.alloySmelterRecipes;
 import static gregtech.api.recipe.RecipeMaps.assemblerRecipes;
 import static gregtech.api.recipe.RecipeMaps.fluidSolidifierRecipes;
+import static gregtech.api.recipe.RecipeMaps.maceratorRecipes;
 import static gregtech.api.util.GTRecipeBuilder.MINUTES;
 import static gregtech.api.util.GTRecipeBuilder.SECONDS;
 import static gregtech.api.util.GTRecipeBuilder.TICKS;
@@ -64,6 +65,7 @@ import gregtech.api.enums.TierEU;
 import gregtech.api.enums.ToolDictNames;
 import gregtech.api.util.GTModHandler;
 import gregtech.api.util.GTOreDictUnificator;
+import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 import mantle.lib.client.MantleClientRegistry;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
@@ -903,70 +905,14 @@ public class ScriptTinkersConstruct implements IScriptLoader {
                 "stickWood",
                 getModItem(Minecraft.ID, "reeds", 1, 0)).provideTo(shapedRecipes())
                 .provideTo(MANTLE.manualShapedCraftingRecipeNamed("punji"));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 0),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 0));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 1),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 1));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 2),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 2));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 3),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 3));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 4),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 4));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 5),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 5));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 6),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 6));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab1", 2, 7),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 7));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 0),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 8));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 1),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 9));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 2),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 10));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 3),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 11));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 4),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 12));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 5),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 13));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 6),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 14));
-        addShapelessRecipe(
-                getModItem(TinkerConstruct.ID, "WoolSlab2", 2, 7),
-                "craftingToolShears",
-                getModItem(Minecraft.ID, "wool", 1, 15));
+        for (int woolMeta = 0; woolMeta < 8; woolMeta++) {
+            GTModHandler.addShapelessCraftingRecipe(
+                    getModItem(TinkerConstruct.ID, "WoolSlab1", 2, woolMeta),
+                    new Object[] { "craftingToolSaw", getModItem(Minecraft.ID, "wool", 1, woolMeta) });
+            GTModHandler.addShapelessCraftingRecipe(
+                    getModItem(TinkerConstruct.ID, "WoolSlab2", 2, woolMeta),
+                    new Object[] { "craftingToolSaw", getModItem(Minecraft.ID, "wool", 1, woolMeta + 8) });
+        }
         Recipe.of(
                 getModItem(TinkerConstruct.ID, "trap.barricade.oak", 1, 0),
                 null,
@@ -2173,6 +2119,12 @@ public class ScriptTinkersConstruct implements IScriptLoader {
                 .itemOutputs(getModItem(TinkerConstruct.ID, "Smeltery", 1, 4))
                 .fluidInputs(new FluidStack(FluidRegistry.getFluid("stone.seared"), 360)).duration(20 * TICKS)
                 .eut(TierEU.RECIPE_MV).addTo(fluidSolidifierRecipes);
+        GTValues.RA.stdBuilder().itemInputs(getModItem(Minecraft.ID, "skull", 1, 3))
+                .itemOutputs(
+                        GregtechItemList.RawHumanMeat.get(4),
+                        getModItem(TinkerConstruct.ID, "strangeFood", 2, 1),
+                        getModItem(BiomesOPlenty.ID, "misc", 4, 3))
+                .outputChances(10000, 2500, 500).duration(10 * SECONDS).eut(TierEU.RECIPE_MV).addTo(maceratorRecipes);
 
         registerManualIcons();
     }
