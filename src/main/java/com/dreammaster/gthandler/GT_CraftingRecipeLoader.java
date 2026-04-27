@@ -71,7 +71,6 @@ import gregtech.api.util.GTUtility;
 import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 import gtneioreplugin.plugin.block.ModBlocks;
 import gtneioreplugin.util.DimensionHelper;
-import ic2.core.Ic2Items;
 
 public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingRecipeLoader implements Runnable {
 
@@ -541,7 +540,7 @@ public class GT_CraftingRecipeLoader extends gregtech.loaders.postload.CraftingR
         GTModHandler.addCraftingRecipe(
                 ItemList.Circuit_Good.get(1, o),
                 new Object[] { "PAP", "CBC", "DCD", 'D', ItemList.Circuit_Parts_Diode.get(1, o), 'C',
-                        Ic2Items.electronicCircuit, 'A',
+                        ItemList.Circuit_BasicElectronic.get(1), 'A',
                         GTOreDictUnificator.get(OrePrefixes.itemCasing, Materials.Steel, 1), 'P',
                         GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.Copper, 1), 'B',
                         ItemList.Circuit_Board_Phenolic_Good.get(1, o) });
