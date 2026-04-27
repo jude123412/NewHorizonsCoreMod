@@ -4,7 +4,6 @@ import static com.dreammaster.scripts.IngredientFactory.getModItem;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.GalacticraftCore;
 import static gregtech.api.enums.Mods.GalacticraftMars;
-import static gregtech.api.enums.Mods.IndustrialCraft2;
 import static gregtech.api.enums.Mods.OpenComputers;
 import static gregtech.api.enums.Mods.ProjectRedIllumination;
 import static gregtech.api.enums.Mods.StevesCarts2;
@@ -151,7 +150,7 @@ public class CircuitAssemblerRecipes implements Runnable {
                             ItemList.Circuit_Parts_Resistor.get(2L),
                             GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.RedAlloy, 2),
                             ItemList.Circuit_Parts_Vacuum_Tube.get(2L))
-                    .itemOutputs(getModItem(IndustrialCraft2.ID, "itemPartCircuit", 1, 0))
+                    .itemOutputs(ItemList.Circuit_BasicElectronic.get(1))
                     .fluidInputs(tMat.getMolten(144L * tMultiplier / 2L)).duration(10 * SECONDS)
                     .eut(TierEU.RECIPE_LV / 2).addTo(circuitAssemblerRecipes);
 
@@ -159,7 +158,7 @@ public class CircuitAssemblerRecipes implements Runnable {
             GTValues.RA.stdBuilder()
                     .itemInputs(
                             ItemList.Circuit_Board_Phenolic_Good.get(1L),
-                            getModItem(IndustrialCraft2.ID, "itemPartCircuit", 2, 0),
+                            ItemList.Circuit_BasicElectronic.get(2),
                             ItemList.Circuit_Parts_Diode.get(2L),
                             GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.Copper, 2))
                     .itemOutputs(ItemList.Circuit_Good.get(1L)).fluidInputs(tMat.getMolten(144L * tMultiplier / 2L))

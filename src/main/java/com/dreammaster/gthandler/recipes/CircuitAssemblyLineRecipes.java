@@ -233,7 +233,7 @@ public class CircuitAssemblyLineRecipes implements Runnable {
         RA.stdBuilder()
                 .itemInputs(
                         ItemList.Wrap_GoodCircuitBoards.get(1),
-                        getModItem(IndustrialCraft2.ID, "itemPartCircuit", 32, 0),
+                        ItemList.Circuit_BasicElectronic.get(32),
                         ItemList.Wrap_SMDDiodes.get(2),
                         GTOreDictUnificator.get(OrePrefixes.wireGt16, Materials.Copper, 2))
                 .itemOutputs(ItemList.Circuit_Good.get(16))
