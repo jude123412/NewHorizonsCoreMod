@@ -275,6 +275,10 @@ public class GT_Loader_OreDictionary extends gregtech.loaders.preload.LoaderGTOr
         GTOreDictUnificator.addToBlacklist(NHItemList.QuantumCircuit.get());
         GTOreDictUnificator.addToBlacklist(NHItemList.PlanckCircuit.get());
 
+        // Blacklist IC2 Circuits
+        GTOreDictUnificator.addToBlacklist(getModItem(IndustrialCraft2.ID, "itemPartCircuit", 1));
+        GTOreDictUnificator.addToBlacklist(getModItem(IndustrialCraft2.ID, "itemPartCircuitAdv", 1));
+
         // Add ore dictionary entries for sand and red sand to craft unfired coke oven bricks.
         GTOreDictUnificator.registerOre("sand", new ItemStack(Blocks.sand, 1, 0));
         GTOreDictUnificator.registerOre("sand", new ItemStack(Blocks.sand, 1, 1));
