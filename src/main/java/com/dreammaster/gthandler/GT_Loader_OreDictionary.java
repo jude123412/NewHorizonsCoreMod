@@ -23,6 +23,7 @@ import static gregtech.api.enums.Mods.TaintedMagic;
 import static gregtech.api.enums.Mods.Thaumcraft;
 import static gregtech.api.enums.Mods.ThaumicTinkerer;
 import static gregtech.api.enums.Mods.TinkerConstruct;
+import static gregtech.api.enums.Mods.TwilightForest;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -237,6 +238,11 @@ public class GT_Loader_OreDictionary extends gregtech.loaders.preload.LoaderGTOr
                 OrePrefixes.ingot,
                 Materials.GalgadorianEnhanced,
                 GTModHandler.getModItem(StevesCarts2.ID, "ModuleComponents", 1L, 49));
+
+        GTOreDictUnificator.set(
+                OrePrefixes.gem,
+                Materials.LiveRoot,
+                GTModHandler.getModItem(TwilightForest.ID, "item.liveRoot", 1L, 0));
 
         GTOreDictUnificator
                 .registerOre(OrePrefixes.nugget, Materials.Void, getModItem(Thaumcraft.ID, "ItemNugget", 1, 7));
