@@ -35,6 +35,7 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GTLog;
+import gregtech.api.util.GTModHandler;
 import gregtech.api.util.GTOreDictUnificator;
 
 public class GT_Loader_OreDictionary extends gregtech.loaders.preload.LoaderGTOreDictionary implements Runnable {
@@ -228,6 +229,14 @@ public class GT_Loader_OreDictionary extends gregtech.loaders.preload.LoaderGTOr
                 OrePrefixes.block,
                 Materials.GalgadorianEnhanced,
                 getModItem(StevesCarts2.ID, "BlockMetalStorage", 1, 2));
+        GTOreDictUnificator.registerOre(
+                OrePrefixes.ingot,
+                Materials.Reinforced,
+                GTModHandler.getModItem(StevesCarts2.ID, "ModuleComponents", 1L, 22));
+        GTOreDictUnificator.registerOre(
+                OrePrefixes.ingot,
+                Materials.GalgadorianEnhanced,
+                GTModHandler.getModItem(StevesCarts2.ID, "ModuleComponents", 1L, 49));
 
         GTOreDictUnificator
                 .registerOre(OrePrefixes.nugget, Materials.Void, getModItem(Thaumcraft.ID, "ItemNugget", 1, 7));
