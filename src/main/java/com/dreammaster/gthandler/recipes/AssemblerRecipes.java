@@ -8884,6 +8884,36 @@ public class AssemblerRecipes implements Runnable {
                 .fluidInputs(SubstituteFluidStack.soldering(8 * INGOTS)).duration(1 * MINUTES + 50 * SECONDS)
                 .eut(TierEU.RECIPE_UHV).addTo(assemblerRecipes);
 
+        GTValues.RA.stdBuilder()
+                .itemInputs(
+                        ItemList.Hull_MAX.get(1L),
+                        ItemList.Cover_SolarPanel_UHV.get(1L),
+                        ItemList.Robot_Arm_UHV.get(1L),
+                        ItemList.BatteryHull_UHV_Full.get(1L))
+                .circuit(2).itemOutputs(ItemList.Machine_UHV_SolarPanel.get(1L))
+                .fluidInputs(SubstituteFluidStack.soldering(9 * INGOTS)).duration(2 * MINUTES)
+                .eut(TierEU.RECIPE_UEV).addTo(assemblerRecipes);
+
+        GTValues.RA.stdBuilder()
+                .itemInputs(
+                        ItemList.Hull_UEV.get(1L),
+                        ItemList.Cover_SolarPanel_UEV.get(1L),
+                        ItemList.Robot_Arm_UEV.get(1L),
+                        ItemList.BatteryHull_UEV_Full.get(1L))
+                .circuit(2).itemOutputs(ItemList.Machine_UEV_SolarPanel.get(1L))
+                .fluidInputs(SubstituteFluidStack.soldering(10 * INGOTS)).duration(2 * MINUTES + 10 * SECONDS)
+                .eut(TierEU.RECIPE_UIV).addTo(assemblerRecipes);
+
+        GTValues.RA.stdBuilder()
+                .itemInputs(
+                        ItemList.Hull_UIV.get(1L),
+                        ItemList.Cover_SolarPanel_UIV.get(1L),
+                        ItemList.Robot_Arm_UIV.get(1L),
+                        ItemList.BatteryHull_UIV_Full.get(1L))
+                .circuit(2).itemOutputs(ItemList.Machine_UIV_SolarPanel.get(1L))
+                .fluidInputs(SubstituteFluidStack.soldering(11 * INGOTS)).duration(2 * MINUTES + 20 * SECONDS)
+                .eut(TierEU.RECIPE_UMV).addTo(assemblerRecipes);
+
         // solar 1EU
 
         GTValues.RA.stdBuilder()
