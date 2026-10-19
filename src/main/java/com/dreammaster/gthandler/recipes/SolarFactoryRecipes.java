@@ -243,7 +243,51 @@ public class SolarFactoryRecipes implements Runnable {
                             GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UEV), 2),
                             GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UHV), 2))
                     .itemOutputs(ItemList.Cover_SolarPanel_UV.get(1)).fluidInputs(Materials.Kevlar.getMolten(2 * 144))
-                    .metadata(data, new SolarFactoryRecipeData(5, 4)).duration(10 * SECONDS).eut(TierEU.RECIPE_UEV),
+                    .metadata(data, new SolarFactoryRecipeData(5, 8)).duration(10 * SECONDS).eut(TierEU.RECIPE_UEV),
+
+            GTValues.RA.stdBuilder()
+                    .itemInputs(
+                            ItemList.Cover_SolarPanel_UV.get(1),
+                            NHItemList.IrradiantReinforcedNeutroniumPlate.get(4),
+                            ItemList.Circuit_Silicon_Wafer6.get(8),
+                            ItemList.Circuit_Wafer_APIC.get(16),
+                            ItemList.Circuit_Chip_FPIC.get(8),
+                            ItemList.Circuit_Parts_Crystal_Chip_Wetware.get(4),
+                            GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUEV, 48),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UIV), 2),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UEV), 4))
+                    .itemOutputs(ItemList.Cover_SolarPanel_UHV.get(1)).fluidInputs(Materials.RadoxPolymer.getMolten(4 * 144))
+                    .metadata(data, new SolarFactoryRecipeData(6, 8)).duration(10 * SECONDS).eut(TierEU.RECIPE_UEV),
+
+            GTValues.RA.stdBuilder()
+                    .itemInputs(
+                            ItemList.Cover_SolarPanel_UHV.get(1),
+                            NHItemList.IrradiantReinforcedNeutroniumPlate.get(8),
+                            ItemList.Circuit_Silicon_Wafer7.get(4),
+                            ItemList.Circuit_Wafer_ZPIC.get(12),
+                            ItemList.Circuit_Chip_APIC.get(4),
+                            ItemList.Circuit_Parts_Chip_Bioware.get(8),
+                            GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUIV, 60),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UMV), 2),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UIV), 4))
+                    .itemOutputs(ItemList.Cover_SolarPanel_UEV.get(1)).fluidInputs(Materials.RadoxPolymer.getMolten(8 * 144))
+                    .metadata(data, new SolarFactoryRecipeData(6, 12)).duration(10 * SECONDS).eut(TierEU.RECIPE_UEV),
+
+            GTValues.RA.stdBuilder()
+                    .itemInputs(
+                            ItemList.Cover_SolarPanel_UEV.get(1),
+                            getModItem(AdvancedSolarPanel.ID, "asp_crafting_items", 4, 13),
+                            ItemList.Circuit_Silicon_Wafer8.get(4),
+                            ItemList.Circuit_Wafer_FPIC.get(12),
+                            ItemList.Circuit_Chip_PPIC.get(4),
+                            ItemList.Circuit_Parts_Chip_Bioware.get(16),
+                            GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUMV, 64),
+                            GTOreDictUnificator.get(OrePrefixes.wireGt01, Materials.SuperconductorUMV, 8),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UXV), 2),
+                            GTOreDictUnificator.get(OrePrefixes.circuit.get(Materials.UMV), 4))
+                    .itemOutputs(ItemList.Cover_SolarPanel_UIV.get(1)).fluidInputs(Materials.Kevlar.getMolten(2 * 144))
+                    .metadata(data, new SolarFactoryRecipeData(7, 8)).duration(10 * SECONDS).eut(TierEU.RECIPE_UEV),
+
 
             // Non-recursive / skipping recipes
             GTValues.RA.stdBuilder()
